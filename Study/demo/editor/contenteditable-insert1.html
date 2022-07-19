@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+	<div id="box" style="border: 1px solid red;" contentEditable>我是p标签的内容</div>
+</body>
+<script type="text/javascript">
+	document.getElementById("box").onclick = function() {
+		insertHtmlAtCursor("<strong>666</strong>")
+	}
+
+	
+	function insertHtmlAtCursor(text) {
+        // //插入一个HTML字符串：
+		// var range, node;
+		// 	range = window.getSelection().getRangeAt(0);
+		// 	node = range.createContextualFragment(text);
+		// 	range.insertNode(node);
+
+
+
+        // 插入文本
+        document.getElementById('box').focus();
+        var sel = window.getSelection();
+		if(sel.getRangeAt && sel.rangeCount) {
+			var range = sel.getRangeAt(0);
+			range.deleteContents();
+			range.insertNode(document.createTextNode(text));
+
+		}
+        
+	}
+</script>
+  
+</html>

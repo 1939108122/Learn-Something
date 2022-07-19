@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p">Example: <i>italic</i> and <b>bold</b></p>
+</body>
+<script type="text/javascript">  
+// https://zh.javascript.info/selection-range
+    let p = document.getElementById('p');
+    let range = new Range();
+    range.setStart(p, 0);
+    range.setEnd(p, 2);
+    document.getSelection().addRange(range);
+    // 对 range 进行 toString 处理，range 则会把其包含的内容以文本的形式返回
+    console.log(window.getSelection());
+    // console.log(range.toString()); // ll
+   </script>
+</html>

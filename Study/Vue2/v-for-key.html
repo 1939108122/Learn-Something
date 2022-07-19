@@ -9,8 +9,9 @@
 </head>
 <body>
     <div id="app">
-        <li v-for="(item, index) in list1" :key="item.index">
-            <input type="text" :value="item.name" @input="item.name=$event.target.value">
+        <li v-for="(item, index) in list1" :key="index">
+            <!-- <span>{{ Math.random() }}</span> -->
+            <input type="text" :value="item.name">
             <button @click="del1(index)">删除</button>
             {{item.name}}
         </li>
@@ -18,12 +19,13 @@
 
         <h1>checkbox</h1>
 
-        <li v-for="(item, index) in list2" :key="index">
-            <input type="checkbox" :value="item.checked" @input="item.checked=$event.target.checked">
+        <!-- <li v-for="(item, index) in list2" :key="index">
+            <input type="checkbox" :value="item.checked" @input="change($event, item)">
+            <span>{{item.value}}</span>
             <button @click="del2(index)">删除</button>
             {{item.checked}}
         </li>
-        <button @click="add2">添加一项</button>
+        <button @click="add2">添加一项</button> -->
     </div>
 </body>
 <script>
@@ -32,11 +34,11 @@
         el: '#app',
         data: {
             list1: [
-                {name: '', value: 5},
-                {name: '', value: 6},
-                {name: '', value: 7},
-                {name: '', value: 8},
-                {name: '', value: 9},
+                {name: '1', value: 5,},
+                {name: '2', value: 6},
+                {name: '3', value: 7},
+                {name: '4', value: 8},
+                {name: '5', value: 9},
             ],
             list2: [
                 {name: '', value: 11, checked: false},
@@ -47,6 +49,10 @@
             ],
         },
         methods: {
+            change(e, item) {
+                console.log(111111);
+                item.checked = e.target.checked;
+            },
             add1() {
                 let len = this.list1.length;
                 this.list1.push({

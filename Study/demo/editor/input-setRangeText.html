@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #text-box {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="text-box" size="30" value="This text has NOT been updated.">
+    <!-- <div id="text-box" contenteditable="true" value="This text has NOT been updated."></div> -->
+    <button onclick="selectText()">Update text</button>
+</body>
+<script type="text/javascript">  
+    function selectText() {
+    const input = document.getElementById('text-box');
+    input.focus();
+    input.setRangeText('ALREADY', 14, 17, 'select');
+    }
+</script>
+</html>

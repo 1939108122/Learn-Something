@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p">Example: <i>italic</i> and <b>bold</b></p>
+</body>
+<script type="text/javascript">  
+    let range = new Range();
+    range.selectNodeContents(document.getElementById('p')); // 或者也可以使用 selectNode(p) 来选择 <p> 标签
+
+    document.getSelection().removeAllRanges(); // 清除现有选择（如果有的话）
+    document.getSelection().addRange(range);
+    // selection.collapseToEnd(); //光标移至最后
+   </script>
+</html>

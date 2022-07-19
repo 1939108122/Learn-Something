@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+    <div
+      style="border: 1px solid red;"
+      id="inputContent"
+      contenteditable="true"
+      placeholder="请在这输入内容" 
+      onblur="blurEdit()"></div>
+    <button onclick="clickInsert()">点击插入一个按钮</button>
+  </body>
+  
+  <script>
+  let position = ''
+  function blurEdit() {
+    position = window.getSelection().getRangeAt(0)
+  }
+  function clickInsert() {
+    const div = document.getElementById('inputContent')
+    if(position === '') {
+      // 如果div没有光标，则在div内容末尾插入
+      div.focus()
+      const range = window.getSelection()
+      range.selectAllChildren(div)
+      range.collapseToEnd()
+      position = window.getSelection().getRangeAt(0)
+    }
+    // 创建一个元素
+    const span = document.createElement('span')
+    // 插入的按钮不可编辑，设置contenteditable为false
+    span.innerHTML = '<button contenteditable="false" class="btn" id="btn1">插入的按钮1</button>'
+    // 将按钮插入
+    position.insertNode(span)
+    window.getSelection().removeAllRanges();
+    div.focus();
+  }
+  </script>
+  
+</html>

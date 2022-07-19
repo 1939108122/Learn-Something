@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test" contenteditable="true"></div>
+    <button onclick="insert">插入</button>
+</body>
+<script type="text/javascript">
+//光标定位可编辑div的末尾
+function keepLastIndex(ev)
+{
+    if (window.getSelection)
+    { //ie11 10 9 ff safari
+        ev.focus(); //解决ff不获取焦点无法定位问题
+        var range = window.getSelection(); //创建range
+        range.selectAllChildren(ev); //range 选择ev下所有子内
+        range.collapseToEnd(); //光标移至最后
+    }
+    else if (document.selection)
+    { //ie10 9 8 7 6 5
+        var range = document.selection.createRange(); //创建选择对象
+        range.collapse(false); //光标移至最后
+        range.select();
+    }
+}
+keepLastIndex(document.getElementById('test'));
+function insert() {
+    document.getElementById('test').innerHTML = '12345';
+}
+//keepLastIndex(this)如果是当前元素可直接传值this
+   </script>
+</html>

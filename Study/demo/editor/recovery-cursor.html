@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box" contentEditable>我是p标签的内容</div>
+    <button id="saveBtn">记录光标位置</button>
+    <button id="restoreBtn">恢复光标位置</button>
+</body>
+<script type="text/javascript">
+    
+    //全局变量用来存放range变量，恢复的时候使用
+    let range = null
+    
+    document.getElementById("saveBtn").onclick=function(){
+        range = saveSelection()
+    }
+    document.getElementById("restoreBtn").onclick=function(){
+        restoreSelection(range)
+    }
+    
+
+    function saveSelection() {
+        if(window.getSelection) {
+            sel = window.getSelection();
+            if(sel.getRangeAt && sel.rangeCount) {
+                return sel.getRangeAt(0);
+            }
+        } else if(document.selection && document.selection.createRange) {
+            return document.selection.createRange();
+        }
+        return null;
+    }
+
+    function restoreSelection(range) {
+        if(range) {
+            if(window.getSelection) {
+                sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+            } else if(document.selection && range.select) {
+                range.select();
+            }
+        }
+    }
+</script>
+
+</html>
