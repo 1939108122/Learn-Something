@@ -9,6 +9,8 @@
 </head>
 <body>
     <div id="app">
+        {{message2}}
+        <input type="text" v-model="message2">
         <input type="text" :value="message" @input="message=$event.target.value">
         message{{ message }}
         <form action="">
@@ -21,6 +23,7 @@
         el: '#app',
         data: {
             message: 'Hello Vue!',
+            message2: 'dsasad'
         },
         methods: {
             submit() {
