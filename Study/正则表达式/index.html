@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="content">
+        www.baidu.com
+    </div>
+</body>
+<script>
+    // let a = 'gsdfada';
+    // console.log(/d/.test(a));
+    let con = prompt('请输入要检测的内容');
+    console.log(con);
+    // console.log(Object.prototype.toString.call(con));
+    console.log(new RegExp(con, 'g'));
+    console.log(new RegExp(/\w/, 'g').test('1'));
+</script>
+</html>
