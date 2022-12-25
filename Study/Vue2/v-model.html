@@ -16,6 +16,8 @@
         <form action="">
             <button @click.prevent="submit">提交</button>
         </form>
+        radio{{radio}}
+        <input type="radio" :checked="radio" @change="radio=$event.target.checked">
     </div>
 </body>
 <script>
@@ -23,7 +25,8 @@
         el: '#app',
         data: {
             message: 'Hello Vue!',
-            message2: 'dsasad'
+            message2: 'dsasad',
+            radio: false
         },
         methods: {
             submit() {
