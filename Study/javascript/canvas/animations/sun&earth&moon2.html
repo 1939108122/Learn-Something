@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>太阳系</title>
+		<style>
+            *{
+                margin:0;padding:0;
+            }
+            body{
+                background-color: #000;
+                overflow: hidden;
+            }
+            canvas {
+                display:block;
+                margin: -180px auto;
+            }
+        </style>
+	</head>
+	<body>
+		<canvas id="canvas" width='1000' height='1000'></canvas>
+ 
+		<script>
+		   	let c = document.getElementById("canvas");
+		   	let ctx=c.getContext("2d");
+                        //绘制背景
+		   	function drawBackground(){
+                            ctx.strokeStyle = "#fff";
+                            //地球轨道
+                            ctx.beginPath();
+                            ctx.arc(500,500,250,0,2*Math.PI,false);
+                            ctx.stroke();
+                            //太阳
+                            ctx.beginPath();
+                            ctx.arc(500,500,50,0,2*Math.PI,false);
+                            ctx.fillStyle="yellow";
+                            ctx.fill();
+                            ctx.stroke();
+                            ctx.closePath();
+                        }
+		   	//初始状态
+		   	//太阳坐标（500，500），太阳半径50
+		   	//地球轨道中心坐标（500，500），地球轨道半径250
+		   	//地球半径20，地球坐标（750，500）
+		   	//月球轨道中心坐标（750，500），月球轨道半径100
+		   	//月球半径10，月球坐标（650，500）
+		   	var cycle=365,time=0;
+		   	function drawAll(){
+		   		ctx.clearRect(0,0,c.width,c.height);
+		   		drawBackground();
+		   		var angle=time*(360/cycle)*Math.PI/180;    //Math.PI/180表示1度
+		   		
+		   		ctx.save();
+		   		ctx.translate(500,500);
+		   		ctx.rotate(angle);
+ 
+		   		//改变画布基点为地球坐标
+		   		ctx.translate(Math.cos(angle)*250, Math.sin(angle)*250);
+		   		ctx.rotate(-2*angle);	//2倍于地球公转角度，便于看出月球的公转。可根据自己需要另作修改。
+		   		//画地球
+		   		ctx.beginPath();
+		   		ctx.arc(0,0,20,0,2*Math.PI,false);
+		   		ctx.fillStyle="blue";
+		   		ctx.fill();
+		   		ctx.stroke();
+		   		ctx.closePath();
+		   		//画月球轨道，以地球为圆心
+		   		ctx.beginPath();
+		   		ctx.arc(0,0,100,0,2*Math.PI,false);
+		   		ctx.stroke();
+		   		ctx.closePath();
+		   		//画月球
+		   		ctx.beginPath();
+		   		ctx.arc(-100,0,10,0,2*Math.PI,false);
+		   		ctx.fillStyle="#F6F6F6";
+		   		ctx.fill();
+		   		ctx.stroke();
+		   		ctx.closePath();
+ 
+		   		ctx.restore();
+		   		time++;    //角度会随时间增加
+		   		
+		   	}
+		   	setInterval(drawAll,30);    //添加定时器，每30ms执行一次
+		</script>
+		
+	</body>
+</html>

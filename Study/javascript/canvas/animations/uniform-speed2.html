@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400">
+    </canvas>
+</body>
+</html>
+
+
+<script>
+    let ctx = document.getElementById('canvas').getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+    let x = 1,
+    direction = 1;
+
+    function drawBall() {  // x不停变化，绘制圆
+        ctx.beginPath();
+        ctx.arc(x, 100, 20, 0, Math.PI * 2);
+        ctx.fillStyle = 'pink';
+        ctx.fill();
+    }
+
+    function speed() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.strokeRect(0, 0, width, height); // 画布的边界
+        drawBall();
+
+        if (x > 0 && x < 400 && direction == 1) { // 在边界范围内
+            x += 100 / 60;
+
+        } else if (x <= 0) { // 边界左侧
+            direction = 1;
+            x = 1; 
+        } else if (x > 400 || direction == 0) { // 超出边界右侧
+            direction = 0;
+            x -= 100 / 60;
+
+        }
+        
+
+        window.requestAnimationFrame(speed);
+        
+    }
+
+    
+    window.requestAnimationFrame(speed);
+
+
+</script>

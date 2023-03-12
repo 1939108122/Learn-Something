@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="1000" height="1000">
+    </canvas>
+</body>
+</html>
+
+
+<script>
+    let ctx = document.getElementById('canvas').getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+    let x = 1;
+    let y = 1;
+
+    function speed() {
+       
+        ctx.clearRect(0, 0, width, height); // 清除画布，避免上一次重绘的图形还保留在画布内
+        
+        ctx.beginPath();
+        ctx.arc(x, 100, 20, 0, Math.PI *2);
+        ctx.fillStyle = 'blue';
+        ctx.closePath();
+        ctx.fill();
+
+        // x += 100/ 60; // 距离加 100 / 60，1秒60次重绘，代表1s走 100px
+        x = x + y;
+        y = y + 0.1;
+
+        window.requestAnimationFrame(speed);
+
+       
+        
+        
+    }
+    
+    window.requestAnimationFrame(speed);
+
+
+</script>

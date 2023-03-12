@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="200" tabindex="0">
+    </canvas>
+</body>
+</html>
+
+
+<script>
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+
+    const width = canvas.width;
+    const height = canvas.height;
+    
+    let ball = {
+        x: 100,
+        y: 100,
+        distanceX: 1,
+        distanceY: 1
+    };
+
+    let key, cancelId;
+
+
+    function drawBall() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.strokeRect(0, 0, width, height);
+
+
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, 15, 0, Math.PI *2);
+        ctx.fillStyle = 'blue';
+        ctx.fill();
+    }
+
+    function move(e) {
+        key = e.keyCode || e.which || e.charCode;  // 兼容不同浏览器
+
+
+        if(key == '87') { // w up
+            ball.y -= Math.abs(ball.distanceY);
+            cancelId = window.requestAnimationFrame(drawBall);
+
+        } else if(key == '83') { // s down
+            ball.y += Math.abs(ball.distanceY);
+            cancelId = window.requestAnimationFrame(drawBall);
+
+        } else if(key == '65') { //  a left
+            ball.x -= Math.abs(ball.distanceX);
+            cancelId = window.requestAnimationFrame(drawBall);
+
+        } else if(key == '68') { // s right
+            ball.x += Math.abs(ball.distanceX);
+            cancelId = window.requestAnimationFrame(drawBall);
+        }
+    }
+    
+    drawBall();
+
+    canvas.focus();
+    canvas.addEventListener('keydown', (e) => {
+        move(e);
+    });
+
+    canvas.addEventListener('keyup', (e) => {
+        if(cancelId) {
+            window.cancelAnimationFrame(cancelId);
+        }
+    });
+    
+
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="150">
+    </canvas>
+</body>
+</html>
+
+
+<script>
+    window.onload = function initCanvas() {
+        let canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d');  // 获取绘制前的画布上下文
+        
+        ctx.fillStyle = 'green'; // 矩形填充色为绿色
+        ctx.fillRect(20, 10, 150, 100);
+
+    };
+    
+</script>

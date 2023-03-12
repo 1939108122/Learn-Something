@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="150">
+    </canvas>
+</body>
+</html>
+
+
+<script>
+    // arc -> 圆弧
+    /*
+        arc(x, y, radius, startAngle, endAngle, anticlockwise)
+        画一个以（x,y）为圆心的以 radius 为半径的圆弧（圆），从 startAngle 开始到 endAngle 结束，按照 anticlockwise 给定的方向（默认为顺时针）来生成。
+
+        备注： arc() 函数中表示角的单位是弧度，不是角度。角度与弧度的 js 表达式：
+
+        弧度=(Math.PI/180)*角度。
+    */
+
+
+    window.onload = function initCanvas() {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        ctx.beginPath(); // 新建一条路径
+        ctx.arc(50, 50, 50, 0, 360 *Math.PI / 180, true); // 绘制圆
+        ctx.closePath();  // 闭合路径之后图形绘制命令又重新指向到上下文中
+        ctx.fill(); // 填充，默认颜色为黑色
+
+    };
+    
+
+</script>

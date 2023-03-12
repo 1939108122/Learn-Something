@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="1024" height="728"></canvas>
+</body>
+<script>
+
+let time= 0; // 定义运动的执行次数
+
+let canvas = document.getElementById('canvas');
+let context = canvas.getContext('2d');
+    
+    drawNotChange();
+
+    context.fillStyle='blue';
+    context.beginPath();
+    context.arc(500, 550, 30, 0, 2*Math.PI, true);
+    context.closePath();
+    context.fill();
+    window.requestAnimationFrame(run);
+    // setInterval(() => {
+    //     run();
+    // }, 2000);
+
+
+function run() {
+
+    context.clearRect(0, 0, 1024,728);
+    drawNotChange();
+    context.save(); // 将当前以左上角坐标为(0,0)的上下文环境进行保存，这样是为了在接下来中要进行画布偏移后，可以进行还原当前的环境
+    
+    context.translate(500, 400);
+    context.rotate(time * 2 * Math.PI / 180);// 设定每次旋转的度数
+    context.fillStyle='blue';
+    context.beginPath();
+    context.arc(0, 150 ,30, 0, 2*Math.PI,false);
+    context.closePath();
+    context.fill();
+    context.restore(); // 将当前为(500,400)的点还原为（0,0）,其实在save中就是将上下文环境保存到栈中，在restore下面对其进行还原
+    time += 1;
+    window.requestAnimationFrame(run);
+}
+
+//绘制不变因素
+function drawNotChange(){
+    context.fillStyle='red';
+    context.beginPath();
+    context.arc(500, 400, 30, 0, 2* Math.PI,true);
+    context.closePath();
+    context.fill();
+    context.beginPath();
+    context.arc(500, 400, 150, 0, 2 * Math.PI,true);
+    context.closePath();
+    context.stroke();
+}
+</script>
+</html>

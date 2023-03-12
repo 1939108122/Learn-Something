@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="200">
+    </canvas>
+</body>
+</html>
+
+
+<script>
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+    
+    let ball = {
+        x: 10,
+        y: 10,
+        distanceX: -100 / 60,
+        distanceY: -200 / 60
+    };
+
+    let raf;
+    let running = false;
+
+   function drawShadow() {
+        ctx.fillStyle = 'rgba(255,255,255, 0.2)';
+        ctx.fillRect(0, 0, width, height);
+        ctx.strokeRect(0, 0, width, height);
+    }
+
+    function drawBall() {
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, 20, 0, Math.PI *2);
+        ctx.fillStyle = 'pink';
+        ctx.fill();
+        ctx.strokeRect(0, 0, width, height);
+    }
+
+    function speed() {
+        drawShadow();
+        drawBall();
+
+        ball.x += ball.distanceX;
+        ball.y += ball.distanceY;
+
+        if (ball.x <= 0) {
+            ball.x = 0;
+            ball.distanceX = - ball.distanceX;
+        }
+
+        if (ball.y <= 0) {
+            ball.y = 0;
+            ball.distanceY = - ball.distanceY;
+        }
+
+        if(ball.x > width) {
+            ball.x = width;
+            ball.distanceX = - ball.distanceX;
+        }
+
+        if(ball.y > height) {
+            ball.y = height;
+
+            ball.distanceY = - ball.distanceY;
+        }
+
+        
+
+      raf  = window.requestAnimationFrame(speed); 
+        
+    }
+
+    canvas.addEventListener('mousemove', (e) => {
+        if(!running) {
+            drawShadow();
+            ball.x = e.offsetX;
+            ball.y = e.offsetY;
+            drawBall();
+        }
+    });
+    
+
+    canvas.addEventListener('click', (e) => {
+        if(!running) {
+            raf = window.requestAnimationFrame(speed);
+            running = true;
+        }
+        
+    });
+
+    canvas.addEventListener('mouseout', (e) => {
+        window.cancelAnimationFrame(raf);
+        running = false;
+    });
+
+    drawBall();
+
+</script>
