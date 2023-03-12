@@ -18,3 +18,14 @@
 14: canvas
 
 14: slot 作用域
+
+15: pnpm 
+16: 发包 cli配置
+
+17: @click.self
+
+18: ResizeObserver
+
+19: BroadcastChannel
+
+20: @update:close
