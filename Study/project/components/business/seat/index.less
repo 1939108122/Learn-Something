@@ -1,0 +1,156 @@
+.dialog-seat-common {
+    .dialog-container {
+        padding: 0;
+    }
+    .dialog-header {
+        padding: 24px 24px 20px;
+        margin: 0;
+        .title {
+            line-height: 20px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+    .dialog-body {
+        .inner {
+            padding: 0 24px 22px;
+            .description {
+                line-height: 20px;
+                color: #7A8799;
+            }
+            .service {
+                margin-top: 12px;
+                ul {
+                    height: 182px;
+                    li {
+                        position: relative;
+                        float: left;
+                        width: 210px;
+                        padding: 11px 0 19px;
+                        background: #fff;
+                        text-align: center;
+                        font-size: 14px;
+                        cursor: pointer;
+                        border: 1px solid rgba(151, 151, 151, 0.2);
+                        border-radius: 4px;
+                        &:hover,&.active {
+                            border-color: #53cac3;
+                            &::before {
+                                position: absolute;
+                                content: '';
+                                left: -3px;
+                                top: -3px;
+                                right: -3px;
+                                bottom: -3px;
+                                background: rgba(0, 190, 189, 0.31);
+                                border-radius: 4px;
+                                z-index: -1;
+                            }
+                        }
+                        img {
+                            display: block;
+                            width: 98px;
+                            height: 98px;
+                            margin: 0 auto;
+                        }
+                        .content {
+                            h4 {
+                                margin-top: 7px;
+                                line-height: 20px;
+                                font-size: 14px;
+                                font-weight: 500;
+                            }
+                            p {
+                                margin-top: 8px;
+                                line-height: 17px;
+                                font-size: 12px;
+                                color: #7A8799;
+                            }
+                        }
+                        &+li {
+                            margin-left: 12px;
+                        }
+                        &:nth-child(3) {
+                            margin-top: 12px;
+                        }
+                        &.service-item-webrtc,
+                        &.service-item-webrtc+.service-item-box {
+                            display: flex;
+                            padding: 10px 0 9px;
+                            text-align: left;
+                            img {
+                                margin-left: 9px;
+                                margin-right: 9px;
+                                flex-shrink: 0;
+                                width: 64px;
+                                height: 64px;
+                            }
+                            .content {
+                                padding-right: 6px;
+                                h4 {
+                                    margin-top: 3px;
+                                }
+                                p {
+                                    margin-top: 4px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .ui-form {
+                margin-top: 15px;
+                .input-wrap {
+                    width: 254px;
+                    min-width: unset;
+                }
+                .form-item-gallary {
+                    display: flex;
+                    .item-content {
+                        margin-left: 0!important;
+                        .ui-select {
+                            width: 84px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+                &-unbind {
+                    .form-item {
+                        margin-bottom: 8px;
+                    }
+                }
+            }
+        }
+        .form-item-custom {
+            margin-bottom: 0;
+            &>.item-content {
+                margin-left: 0!important;
+                &>.form-error-tip {
+                    left: 90px;
+                }
+            }
+            .form-item {
+                margin-bottom: 24px;
+                .item-label {
+                    position: relative;
+                    span i {
+                        white-space: nowrap;
+                    }
+                }
+            }
+            &.form-item-custom-mobile>.item-content>.form-error-tip {
+                top: 32px;
+            }
+        }
+    }
+    .dialog-footer {
+        clear: both;
+        margin-top: 0;
+        padding-bottom: 20px;
+        padding-right: 30px;
+    }
+}
+.custom-toast .toast-con {
+    padding: 5px 20px;
+    line-height: 30px;
+}

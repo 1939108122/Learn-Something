@@ -1,0 +1,53 @@
+.skill-tag-selecter {
+    .ui-select {
+        width: 100%;
+        display: block;
+        .ui-select-item {
+            width: 20%;
+            float:left;
+            clear:none;
+            padding: 0;
+            padding-left: 10px;
+            height: 40px;
+            &:hover {
+                background-color: unset;
+            }
+            span {
+                display: block;
+                color: #414a60;
+                padding: 0 12px;
+                line-height: 20px;
+                height: 20px;
+                border-radius: 15px;
+                margin-top: 10px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                &.active {
+                    color: #00d7c6;
+                }
+                &:hover {
+                    background-color: #eef0f5;
+                }
+            }
+        }
+        .ui-dropdown-not-found {
+            padding: 0;
+            .tip-box {
+                background-color: #f2f5fa;
+                line-height: 40px;
+                padding:0 17px;
+                text-align: left;
+                font-size: 14px;
+                span {
+                    float: right;
+                    color: #d1d4db;
+                }
+                i {
+                    color: #16c3b1;
+                    font-style: normal;
+                }
+            }
+        }
+    }
+}
