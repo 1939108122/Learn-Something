@@ -3,11 +3,25 @@
 
 ### 浅拷贝
 
-**对象的浅拷贝是其属性与拷贝源对象的属性共享相同的引用（指向相同的底层值）的副本**
+**对象的浅拷贝是其属性与拷贝源对象的属性一份精确的拷贝**
 
 **如果源对象的属性是基本类型，那么拷贝的就是基础类型的值，如果属性是引用类型，那么拷贝的就是指向存储在堆内存的一个指针地址（共享同一块内存），所以只要有一个对象改变了地址，则另一个也会受影响**
 
 tips: **可以用a===b来判断两个对象是否指向同一个地址**
+
+```js
+const obj = {}
+const newObj = obj
+
+console.log(obj == newObj) // true
+
+
+const obj = {}
+const newObj = {}
+
+console.log(obj == newObj) // false
+```
+
 
 **在 JavaScript 中，所有标准的内置对象复制操作（展开语法、Array.prototype.concat()、Array.prototype.slice()、Array.from()、Object.assign() 和 Object.create()）创建的是浅拷贝而不是深拷贝。**
 
@@ -32,6 +46,22 @@ obj2.info.name = 'bbb'; // 改变引用类型的属性，共享内存的源对�
 
 console.log(obj1); // { name: 'xxx', info: { name: 'bbb', age: 18 } }
 console.log(obj2); // { name: 'kkk', info: { name: 'bbb', age: 18 } }
+```
+
+
+```js
+// 实现一个浅拷贝
+
+function shallowClone(obj) {
+    const newObj = {};
+    for(let key in obj) {
+        if(obj.hasOwnProperty(key)) {
+            newObj[key] = obj[key];
+        }
+    }
+
+    return newObj;
+}
 ```
 
 ### 浅拷贝与引用类型赋值的区别
