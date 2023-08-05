@@ -27,3 +27,15 @@ for(var i = 0; i < 5; i++) {
         console.log(i);
     },0);
 }
+
+
+function buildUrl() {
+    let qs = '?debug=true';
+
+    with(location) {
+        let url = href + qs;
+        // var url = href + qs;
+    }
+    console.log(url);
+    return url;
+}
