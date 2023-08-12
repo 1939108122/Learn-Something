@@ -1,4 +1,4 @@
-**闭包就是能够读取其他函数内部变量的函数**
+**闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。**
 
 **内部函数访问了外部函数的变量，当外部函数执行后，会对外部函数进行垃圾回收，但是内部函数仍然可以保持对外部函数作用域的引用，在定时器、事件监听器、ajax请求等，只要使用了回调函数，就是在使用闭包**
 
@@ -63,4 +63,71 @@ https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html
 
 
 
+#### 闭包应用场景
 
+
+1: 数据封装和私有性
+
+```js
+
+function operateCount() {
+    let count = 0;
+    return {
+        incrementCount: function () {
+            count++;
+        },
+        decrementCount: function() {
+            count--;
+        },
+        getCount: function() {
+            return count;
+        }
+    };
+}
+
+```
+
+
+
+2: 回调函数和事件处理
+
+```js
+function wait(message) {
+    setTimeout(function() {
+        console.log(message);
+    }, 100);
+}
+
+wait('iam message');
+```
+
+
+
+```js
+// 防抖
+function debounce(fn, delay = 100) {
+    let timerId = null;
+    return function () {
+        const context = this;
+        if (timerId) {
+            window.clearTimeout(timerId);
+        }
+        timerId = setTimeout(() => {
+            fn.apply(context, arguments);
+            timerId = null;
+        }, delay);
+    };
+}
+```
+
+
+3: 循环中的IIFE：实现私有作用域，避免污染全局作用域。
+```js
+for(var i = 0; i < 5; i++) {
+    (function(i) {
+        setTimeout(function timer(){
+            console.log(i);
+        }, i*1000);
+    })(i)
+}
+```
