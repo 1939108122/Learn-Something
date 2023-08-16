@@ -46,6 +46,27 @@ obj.foo(); // 2
 
 隐式绑定规则会把函数中调用的this绑定到这个 obj 对象上。
 
+
+对象属性引用链中只有上一层或者说最后一层在调用位置中起作用。
+eg:
+
+function foo() {
+    console.log(this.a);
+}
+
+
+var obj2 = {
+    a: 2,
+    foo: foo
+}
+
+var obj1 = {
+    a: 1,
+    obj2: obj2
+}
+
+obj1.obj2.foo(); // 2
+
 ```
 
 
@@ -93,4 +114,30 @@ function foo (a) {
 var bar = new foo(1);
 
 bar.a // 1
+```
+
+
+
+
+
+
+
+
+
+#### this 使用常用场景
+
+```js
+var obj = {
+    a: 1,
+    b: function() {
+        console.log(this);
+    }
+};
+
+/*
+    方式一： 对象调用：obj.b(), 指向obj对象
+    方式二： 函数调用： var a = obj.b; a(), 指向全局window对象
+    方式三： 作为构造函数调用：var a = new Fun(); this指向实例化对象
+    方式四：作为call、apply调用 obj.b.apply(object, []); 指向当前的object
+*/
 ```
