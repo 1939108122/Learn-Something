@@ -141,3 +141,77 @@ var obj = {
     方式四：作为call、apply调用 obj.b.apply(object, []); 指向当前的object
 */
 ```
+
+
+
+
+
+#### 4: 箭头函数里的this
+
+this在标准和箭头函数中有不同的行为。在标准函数中，**this引用的是把函数当方法的调用的上下文对象**, 例子：
+
+```js
+window.color = 'red';
+
+let o = {
+    color: 'blue'
+}
+function sayColor() {
+    console.log(this.color);
+}
+
+sayColor(); // red
+
+o.sayColor = sayColor;
+
+o.sayColor(); // blue
+
+
+```
+
+在箭头函数中，this引用的是定义箭头函数的上下文
+
+```js
+window.color = 'red';
+
+let o = {
+    color: 'blue'
+}
+let sayColor = () => {
+    console.log(this.color);
+}
+
+sayColor(); // red
+
+o.sayColor = sayColor;
+
+o.sayColor(); // red
+
+// 在对sayColor的两次调用中，this引用的都是window对象，因为箭头函数是在window上下文中定义的
+
+```
+
+
+
+
+**在事件回调或者定时回调中调用某个函数时，this值指向的并非想要的对象，此时将回调函数写成箭头函数就可以解决问题，这是因为箭头函数中的this会保留定义该函数时的上下文：**
+
+```js
+function King() {
+    this.royaltyname = 'jack';
+    setTimeout(() => {
+        console.log(this.royaltyname);
+    }, 1000);
+}
+
+function Queen() {
+    this.royaltyname = 'rose';
+    setTimeout(function () {
+        console.log(this.royaltyname);
+    }, 1000);
+}
+
+new King(); // jack
+
+new Queen(); //undefined
+```
