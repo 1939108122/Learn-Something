@@ -60,3 +60,5 @@ console.log(person.name) // Kevin
 ![原型-导出 (3)](/assets/原型-导出%20(3).png)
 
 
+
+![4191692719966_.pic](/assets/4191692719966_.pic.jpg)
