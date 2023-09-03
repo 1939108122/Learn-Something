@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr minmax(100px, 1fr);
+            grid-row-gap: 20px;
+            grid-column-gap: 20px;
+
+        }
+        .grid-box div:nth-child(odd) {
+            background-color: aqua;
+        }
+        .grid-box div:nth-child(even) {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    </div>
+</body>
+</html>
