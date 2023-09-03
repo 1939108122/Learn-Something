@@ -11,6 +11,13 @@
 4: overflow不为 visible 或者 clip的块级元素
 5: display 为 inline-block、flow-root、flex的元素
 
+##### BFC的特点
+
+1: BFC可以包含浮动元素（闭合浮动）
+2: BFC所确定的区域不会与外部浮动元素发生重叠
+3: 位于同一BFC下的相邻块级子元素在垂直方向上会发生margin重叠
+4: 位于不同BFC下的相邻元素之间不会发生margin重叠
+
 
 ##### BFC的作用
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float三栏布局</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            height: 100%;
+        }
+        .left {
+            float: left;
+            width: 200px;
+            background-color: aqua;
+        }
+        .right {
+            float: right;
+            width: 200px;
+            background-color: aqua;
+        }
+        .middle {
+            float: left;
+            width: calc(100% - 420px);
+            margin: 0 10px;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left">left</div>
+        <div class="middle">middle</div>
+        <div class="right">right</div>
+    </div>
+</body>
+</html>
