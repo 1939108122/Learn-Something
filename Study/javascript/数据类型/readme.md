@@ -2,7 +2,7 @@
 
 #### 内置类型
 
-javascript 有七种内置类型：
+javascript 有八种内置类型：
 
 1: 空值（null）
 
@@ -17,6 +17,7 @@ javascript 有七种内置类型：
 6: 对象（object）
 
 7: 符号 （symbol ES6新增）
+8: BigInt
 
 **除了对象以外，其他都称为“基本类型”**
 
@@ -84,3 +85,10 @@ b // ReferenceError: b is not defined
 
 NaN === NaN // false
 ```
+
+
+js判断数据类型方法
+
+1: typeof 注意 typeof null === ‘object‘ 
+
+2: Object.prototype.toString.call()

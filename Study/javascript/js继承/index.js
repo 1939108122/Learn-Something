@@ -90,3 +90,32 @@ console.log(type.colors); // ['blue', 'red']
 
 type.sayName(); // rose
 type.sayAge(); // 17
+
+
+
+
+
+// 原型式继承(引用值在每个对象之间共享)
+function object(o) {
+    function F() {}
+    F.prototype = o;
+    return new F();
+}
+
+
+let person = {
+    name: 'jack',
+    arr: [1, 2, 3] 
+}
+
+
+let person1 = object(person);
+
+person1.arr.push(4);
+
+let person2 = object(person);
+
+person1.arr.push(5);
+
+console.log(person.arr); // 1 2 3 4 5
+
