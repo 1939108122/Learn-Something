@@ -1,9 +1,21 @@
+// let a = {
+//     n: 0,
+//     valueOf: function() {
+//         return ++this.n;
+//     }
+// };
+
+
+// console.log(a == 1 && a== 2 && a ==3);
+
+
 let a = {
-    n: 0,
     valueOf: function() {
-        return ++this.n;
+        console.log('valueOf');
+    },
+    toString: function() {
+        console.log('toString');
     }
 };
 
-
-console.log(a == 1 && a== 2 && a ==3);
+1 - a;
