@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="time">
+        
+    </div>
+</body>
+    <script>
+        let dom = document.getElementById('time');
+        function countDown(second = 60) {
+            dom.innerText = second;
+            if(second <= 0) return;
+            let timer = setTimeout(() => {
+                second--;
+                countDown(second);
+            }, 1000);
+        }
+        countDown(10);
+    </script>
+
+</html>
