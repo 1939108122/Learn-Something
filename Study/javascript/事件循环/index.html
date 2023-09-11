@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交互任务队列优先级比定时任务高</title>
+</head>
+<body>
+    <button id="timer">点击开始</button>
+    <button id="interaction">开始交互</button>
+</body>
+
+<script>
+    function delay(duration) {
+        let start = Date.now();
+
+        while(Date.now() - start < duration) { // 延时 duration ms
+            
+        }
+    }
+
+    let timer = document.getElementById('timer');
+    let interaction = document.getElementById('interaction');
+
+    timer.addEventListener('click', function() {
+        addDuration();
+        addInteraction();
+    });
+
+    function addDuration() {
+        console.log('定时队列');
+        setTimeout(function() {
+            console.log('执行了setTimeout的回调函数');
+        }, 20);
+
+        delay(2000);
+    }
+
+    function addInteraction() {
+        console.log('交互队列');
+        interaction.addEventListener('click', function() {
+            console.log('执行了交互队列的回调函数');
+        });
+
+        delay(2000);
+    }
+    
+    
+</script>
+</html>
