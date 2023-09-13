@@ -70,7 +70,7 @@
 
 1：定时任务（setTimeout、setInterval），优先级低
 2: 交互任务,优先级适中
-3: 微任务（Promise.resolve、MutationObserver）,优先级最高
+3: 微任务（Promise.resolve().then、MutationObserver、async/await）,优先级最高
 
 因为浏览器认为交互任务会比定时器任务更高，应该更快响应
 
@@ -82,7 +82,7 @@
 2: 检查微任务队列是否有任务，有的话会全部依次放入执行栈执行，直至清空微队列
 3: 浏览器视情况更新UI（可能把几次循环一块渲染）
 
-接下来就是重复以上步骤，便是事件循环
+接下来就是不断循环往复的从任务队列读取任务去执行，便是事件循环
 
 ```
 
@@ -118,4 +118,103 @@ JS是一门单线程语言，这是因为它运行在浏览器的渲染主线程
 2: 按照W3C的标准，浏览器实现计时器时，如果嵌套层数超过5层，则会带有4ms的最少时间，这样有偏差
 
 3: 计算机硬件没有原子钟，无法做到精准计时
+```
+
+
+
+
+
+```js
+async function async1() {
+    console.log('async1 start');
+    await async2();
+    console.log('async1 end');
+}
+// 上面的代码等价于 ==>
+async function async1() {
+    console.log('async1 start');
+    Promise.resolve(async2()).then(() => {
+        console.log('async1 end')
+    })
+}
+```
+
+
+
+
+```js
+console.log("start");
+setTimeout(() => {
+    console.log("children2")
+    Promise.resolve().then(() =>{
+        console.log("children3")
+    })
+}, 0)
+
+new Promise(function(resolve, reject){
+    console.log("children4")
+    setTimeout(function(){
+        console.log("children5")
+        resolve("children6")
+    }, 0)
+}).then(res =>{
+    console.log("children7")
+    setTimeout(() =>{
+        console.log(res)
+    }, 0)
+})
+```
+
+
+```js
+async function async1() {
+    console.log('async1 start')
+    await async2()
+    console.log('async1 end')
+}
+async function async2() {
+    console.log('async2')
+}
+console.log('script start')
+setTimeout(function () {
+    console.log('setTimeout')
+}, 0)
+async1()
+new Promise((resolve) => {
+    console.log('promise1')
+    resolve()
+}).then(function () {
+    console.log('promise2')
+})
+console.log('script end')
+```
+
+
+
+
+```js
+async function async1() {
+    console.log('async1 start');
+    await async2();
+    setTimeout(function() {
+        console.log('setTimeout1')  // 这一部分代码会放入到 promise 的微任务队列中。
+    },0)
+}
+async function async2() {
+    setTimeout(function() {
+        console.log('setTimeout2')
+    },0)
+}
+console.log('script start');
+setTimeout(function() {
+    console.log('setTimeout3');
+}, 0)
+async1();
+new Promise(function(resolve) {
+    console.log('promise1');
+    resolve();
+}).then(function() {
+    console.log('promise2');
+});
+console.log('script end');
 ```
