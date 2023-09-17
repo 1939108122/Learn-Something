@@ -29,7 +29,7 @@ export default {
             this.$emit('change', 2);
         },
         change2() {
-            
+            this.$emit('update:b', 3);
         }
     }
 }
