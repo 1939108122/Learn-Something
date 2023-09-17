@@ -61,4 +61,4 @@ console.log(person.name) // Kevin
 
 
 
-![4191692719966_.pic](/assets/4191692719966_.pic.jpg)
+![4191692719966_.pic](https://i.imgur.com/lJLWTVu.png)
