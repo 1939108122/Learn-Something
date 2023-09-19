@@ -12,15 +12,19 @@
 </body>
     <script>
         let dom = document.getElementById('time');
+        let timer;
         function countDown(second = 60) {
             dom.innerText = second;
-            if(second <= 0) return;
-            let timer = setTimeout(() => {
+            if(second <= 0) {
+                clearTimeout(timer);
+                return;
+            }
+            timer = setTimeout(() => {
                 second--;
                 countDown(second);
             }, 1000);
         }
-        countDown(10);
+        countDown(3);
     </script>
 
 </html>
