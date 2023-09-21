@@ -24,6 +24,24 @@ export default {
             default: 0
         }
     },
+    beforeCreate() {
+        console.log('子beforeCreate');
+    },
+    created() {
+        console.log('子created');
+    },
+    beforeMount() {
+        console.log('子beforeMount');
+    },
+    mounted() {
+        console.log('子Mounted');
+    },
+    beforeDestroy() {
+        console.log('子beforeDestroy');
+    },
+    destroyed() {
+        console.log('子destroyed');
+    },
     methods: {
         change() {
             this.$emit('change', 2);
