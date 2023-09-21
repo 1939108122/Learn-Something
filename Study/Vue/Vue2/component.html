@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" :value="message" @input="message=$event.target.value">
+        message{{ message }}
+        我是组件
+        <button-counter></button-counter> -->
+        {{ username }}
+        <base-input
+            label="Username:"
+            v-model="username"
+            required
+            placeholder="Enter your username"
+            ></base-input>
+    </div>
+    <script>
+        Vue.component('button-counter',{
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            template: `<div><button @click="count++">点我加一</button>{{count}}</div>`
+        });
+        Vue.component('base-input', {
+            inheritAttrs: true,
+            props: ['label', 'value'],
+            template: `
+    
+                <label>
+                {{ label }}
+                <input
+                    v-bind="$attrs"
+                    v-bind:value="value"
+                    v-on:input="$emit('input', $event.target.value)"
+                >
+                </label>
+            `
+        });
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                username: 'ddd'
+            }
+          
+        });
+      </script>
+</body>
+</html>
