@@ -9,23 +9,22 @@
 </head>
 <body>
     <div id="app">
-        <li v-for="(item, index) in list1" :key="index">
-            <!-- <span>{{ Math.random() }}</span> -->
+        <!-- <li v-for="(item, index) in list1" :key="index">
             <input type="text" :value="item.name">
             <button @click="del1(index)">删除</button>
             {{item.name}}
         </li>
-        <button @click="add1">添加一项</button>
+        <button @click="add1">添加一项</button> -->
 
         <h1>checkbox</h1>
 
-        <!-- <li v-for="(item, index) in list2" :key="index">
-            <input type="checkbox" :value="item.checked" @input="change($event, item)">
+        <li v-for="(item, index) in list2" :key="index">
+            <input type="checkbox" :value="item.checked" @change="change($event, item)">
             <span>{{item.value}}</span>
             <button @click="del2(index)">删除</button>
             {{item.checked}}
         </li>
-        <button @click="add2">添加一项</button> -->
+        <button @click="add2">添加一项</button>
     </div>
 </body>
 <script>
@@ -41,11 +40,11 @@
                 {name: '5', value: 9},
             ],
             list2: [
-                {name: '', value: 11, checked: false},
-                {name: '', value: 12, checked: false},
-                {name: '', value: 13, checked: false},
-                {name: '', value: 14, checked: false},
-                {name: '', value: 15, checked: false},
+                {name: '', value: 1, checked: false},
+                {name: '', value: 2, checked: false},
+                {name: '', value: 3, checked: false},
+                {name: '', value: 4, checked: false},
+                {name: '', value: 5, checked: false},
             ],
         },
         methods: {
@@ -67,7 +66,8 @@
                 let len = this.list2.length;
                 this.list2.push({
                     name: '',
-                    value: len
+                    value: len + 1,
+                    checked: false
                 });
             },
             del2(index) {
