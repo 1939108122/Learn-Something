@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+            background-color: antiquewhite;
+            overflow: hidden;
+        }
+        .carousel-list {
+            position: absolute;
+            display: flex;
+            list-style-type: none;
+            height: 100%;
+            width: 100%;
+            transform: translateX(0%);
+            transition: all 0.5s;
+        }
+        .carousel-item {
+            min-width: 300px;
+            text-align: center;
+        }
+        .page-dots {
+            position: absolute;
+            display: flex;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .page-dots > span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .page-dots > span:nth-child(2) {
+            margin: 0 10px;
+        }
+        .page-dots > .active {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="carousel-list">
+            <li class="carousel-item">1</li>
+            <li class="carousel-item">2</li>
+            <li class="carousel-item">3</li>
+            <li class="carousel-item">1</li>
+        </ul>
+        <div class="page-dots">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</body>
+
+<script>
+    var containerDom = document.querySelector('.container');
+    var carouselDom = document.getElementsByClassName('carousel-list');
+    var clickDom = document.querySelectorAll('span');
+    var count = 0;
+    function MoveTo(i) {
+        if(i > 2) {
+            i = 0;
+            count = 0;
+        }
+        carouselDom[0].style.transform = `translateX(-${i}00%)`;
+        var dom = document.querySelector('.page-dots span.active'); 
+        dom.classList.remove('active');
+        clickDom[i].classList.add('active');
+    }
+    clickDom.forEach((item, i) => {
+        item.addEventListener(('click'), () => {
+            MoveTo(i);
+        })
+    });
+    
+
+    var timer;
+    timer = setInterval(() => {
+        count ++;
+        MoveTo(count);
+    }, 1000);
+
+    containerDom.addEventListener('mouseenter', () => {
+        clearInterval(timer);
+    });
+
+    containerDom.addEventListener('mouseleave', () => {
+        timer = setInterval(() => {
+        count ++;
+        MoveTo(count);
+    }, 1000);
+    });
+
+</script>
+</html>
