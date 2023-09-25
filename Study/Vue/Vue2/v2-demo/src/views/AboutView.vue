@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1 v-show="false">This is an about page</h1>
     <custom v-model="a" :b.sync="b"></custom>    
     {{ tes }}
     {{ getTime() }}
@@ -8,11 +8,15 @@
     {{fullName}}
 
     <button @click="changeFullName">change fullName</button>
+
+    <h1>{{ obj }}</h1>
+
+    <button @click="changeObj">changeObj</button>
   </div>
 </template>
 <script>
 
-import custom from './custom.vue';
+import custom from './custom';
 
 export default {
     data() {
@@ -21,6 +25,9 @@ export default {
             b: 2,
             firstName: 'jack',
             lastName: 'rose',
+            obj: {
+                key: 1
+            }
         };
     },
     beforeCreate() {
@@ -65,6 +72,9 @@ export default {
         },
         changeFullName() {
             this.fullName = 'rose-jack';
+        },
+        changeObj() {
+            delete this.obj.key;
         }
     } 
 }
