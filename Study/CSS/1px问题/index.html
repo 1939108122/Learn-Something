@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .border {
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+        .border::after {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200%; 
+            height: 200%; 
+            border: 1px solid red;
+            transform: scale(0.5); 
+            transform-origin: 0 0;
+        }
+        .nomal {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            border: 1px solid red;
+        }
+
+        .line-nomal {
+            height: 1px;
+            background-color: red;
+            margin: 20px 0;
+        }
+        .line {
+            position: relative;
+        }
+        .line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 1px;
+            background: red;
+            transform: scale(0.5);
+            transform-origin: 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="border"></div>
+
+    <div class="nomal"></div>
+
+    <div class="line-nomal"></div>
+    <div class="line"></div>
+</body>
+</html>
