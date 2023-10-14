@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <button id="btn">修改数据</button>
+</body>
+<script>
+
+    let obj = {
+        msg: 'aaa'
+    };
+    let dom = document.getElementById('app') || '';
+    let btnDom = document.getElementById('btn') || '';
+
+    btnDom.addEventListener('click', function() {
+        obj.msg = '我修改了数据';
+    })
+
+    Object.defineProperty(obj, 'msg', {
+        configurable: true,
+        enumerable: true,
+        set: function(value) {
+            val = value;
+            dom.innerText = value;
+        }
+    });
+
+    obj.msg = 'bbb';
+
+
+    
+</script>
+</html>

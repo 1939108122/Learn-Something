@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input"><br/>
+
+    <button id="btn">修改数据为“我修改数据啦”</button>
+</body>
+<script>
+
+    let obj = {};
+    let inputDom = document.getElementById('input') || '';
+    inputDom.addEventListener('input', function(e) {
+        obj.msg = e?.target?.value || '';
+
+    });
+
+    let btnDom = document.getElementById('btn') || '';
+    btnDom.addEventListener('click', function(e) {
+        obj.msg = '我点击了';
+    });
+    Object.defineProperty(obj, 'msg', {
+        configurable: true,
+        enumerable: true,
+        get: function() {
+            return val;
+        },
+        set: function(value) {
+            val = value; // val放到window上对象去
+            inputDom.value = value;
+            console.log(obj.msg);
+        }
+    });
+
+    
+</script>
+</html>
