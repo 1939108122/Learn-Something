@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function fn1() {
+        var num = 10;
+        function fn2() { //闭包
+            debugger;
+            console.log(num);
+        }
+        fn2();
+    }
+    fn1(); //输出结果10
+    // https://www.cnblogs.com/mingo233/p/13582147.html
+</script>
+</html>

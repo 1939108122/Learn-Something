@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击我</button>
+</body>
+
+<script>
+    var arr = [];
+    let dom = document.getElementById('btn');
+
+    dom.addEventListener('click', function() {
+        var b = new Array(100000).fill(2);
+        arr.push(b);
+    });
+</script>
+</html>
