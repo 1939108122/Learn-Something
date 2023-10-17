@@ -44,19 +44,26 @@ Promise._all = function(proms) {
 
 const p1 = new Promise((resolve, reject) => {
     resolve("p1");
+    // setTimeout(() => {
+    //     reject("p1");
+    // }, 0)
 });
 
 
 const p2 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve("p2");
-    }, 3000);
+    // setTimeout(() => {
+    //     resolve("p2");
+    // }, 0);
+
+    resolve("p2");
 });
 
 const p3 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve("p3");
-    }, 1000);
+    resolve("p3");
+    // setTimeout(() => {
+    //     console.log('i am p3');
+    //     resolve("p3");
+    // }, 1000);
 });
 
 const p4 = new Promise((resolve, reject) => {
@@ -75,15 +82,14 @@ Promise._all([p4, p3, p2, p1]).then(
 )
 
 
-// Promise.all([]).then(
-//     (data) => {
-//         console.log(data);
-//     }, 
+const p = Promise.all([1, 2, 3, 4]);
+console.log(p);
+setTimeout(() => {
+    console.log(p);
+})
 
-//     (reject) => {
-//         console.log(reject, 'reject');
-//     }
-// );
+
+
 
 
 
