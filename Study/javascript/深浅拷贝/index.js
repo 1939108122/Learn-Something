@@ -50,3 +50,58 @@ console.log(obj2); // { name: 'kkk', info: { name: 'bbb', age: 18 } }
 
 
 
+
+
+
+
+
+// 实现一个浅拷贝
+
+// 1
+function shallowCopy(obj) {
+    let target = {};
+    for(let key in obj) {
+        if(obj.hasOwnProperty(key)) { // 自身属性
+            target[key] = obj[key]
+        }
+    }
+    return target;
+}
+
+
+// 2
+let obj1 = { name: 'jack', inner: {a: 1, b: 2}};
+
+let obj2 = {...obj1};
+
+
+
+
+
+// 实现一个深拷贝
+
+function deepCopy1(obj) {
+
+    let target = Array.isArray(obj) ? [] : {};
+
+    for(let key in obj) {
+        if(obj.hasOwnProperty(key)) { // 自身属性
+
+            if(isObjectOrArray(obj[key])) {
+                target[key] = deepCopy1(obj[key]);
+            } else {
+                target[key] = obj[key];
+            }
+        }
+    }
+    return target;
+}
+
+
+function isObjectOrArray(target) { // 是数组或者对象就继续递归赋值
+    return typeof target !== null && typeof target === 'object';
+}
+
+
+
+

@@ -52,16 +52,22 @@ console.log(obj2); // { name: 'kkk', info: { name: 'bbb', age: 18 } }
 ```js
 // 实现一个浅拷贝
 
-function shallowClone(obj) {
-    const newObj = {};
+// 1
+function shallowCopy(obj) {
+    let target = {};
     for(let key in obj) {
-        if(obj.hasOwnProperty(key)) {
-            newObj[key] = obj[key];
+        if(obj.hasOwnProperty(key)) { // 自身属性
+            target[key] = obj[key]
         }
     }
-
-    return newObj;
+    return target;
 }
+
+
+// 2
+let obj1 = { name: 'jack', inner: {a: 1, b: 2}};
+
+let obj2 = {...obj1};
 ```
 
 ### 浅拷贝与引用类型赋值的区别
@@ -80,3 +86,30 @@ function shallowClone(obj) {
 #### 深拷贝的几种实现方式
 
 **1:JSON.parse(JSON.stringify())** 
+
+JSON.parse(JSON.stringify()) 有几个缺点
+
+1: 会忽略 undefined
+2: 会忽略 symbol
+3: 不能序列化函数
+4: 不能解决循环引用的对象
+5: 不能正确处理new Date()
+6: 不能处理正则
+
+比如：
+
+```js
+
+let obj = {
+    name: 'muyiy',
+    a: undefined,
+    b: Symbol('muyiy'),
+    c: function() {}
+}
+
+var a = JSON.parse(JSON.stringify(obj));
+console.log(a); // {name: muyiy}
+
+```
+
+
