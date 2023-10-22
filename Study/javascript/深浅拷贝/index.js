@@ -82,6 +82,8 @@ let obj2 = {...obj1};
 
 function deepCopy1(obj) {
 
+    if(!isObjectOrArray(obj)) return obj;
+
     let target = Array.isArray(obj) ? [] : {};
 
     for(let key in obj) {
