@@ -75,7 +75,25 @@ vue2 双端比较
 **设置key和不设置key的区别：
 设置了key的话，在对比完首尾节点后，通过对旧节点列表建立一个 { key, oldVnode }的映射表，然后遍历新节点列表的剩余节点，根据newVnode.key在旧映射表中寻找可复用的节点，然后打补丁并且移动到正确的位置，所以为节点设置key可以更高效的利用dom。**
 
-
+for(let i = 0; i < path.length; i++) {
+        
+        let arr = path[i].split('.');
+        let value = obj[path[i]];
+        if(typeof obj[arr[0]] === 'object') {
+            observer(obj[arr[0]], [arr.slice(1).join('.')], cb);
+        } else {
+            Object.defineProperty(obj, path[i], {
+                configurable: true,
+                enumerable: true,
+                get: function() {
+                    return value;
+                },
+                set: function(newVal) {
+                    cb(newVal, obj[path[i]]);
+                }
+            });
+        }
+    }
 
 
 

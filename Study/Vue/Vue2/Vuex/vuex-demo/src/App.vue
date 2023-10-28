@@ -16,7 +16,10 @@ export default {
   components: {
     Add,
     Sub
-  }
+  },
+  created() {
+    localStorage.setItem('count', 3);
+  },
 }
 </script>
 

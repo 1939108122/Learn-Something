@@ -1,7 +1,11 @@
 <template>
   <div class="about">
-    <h1 v-show="false">This is an about page</h1>
-    <custom v-model="a" :b.sync="b"></custom>    
+    <h1>This is an about page</h1>
+    <custom v-model="a" :b.sync="b" :user="user">
+        <template v-slot="slotProps">
+          我是  {{ slotProps.user.firstName }}
+        </template>
+    </custom>    
     {{ tes }}
     {{ getTime() }}
 
@@ -12,11 +16,13 @@
     <h1>{{ obj }}</h1>
 
     <button @click="changeObj">changeObj</button>
+    {{arr}}
   </div>
 </template>
 <script>
 
 import custom from './custom';
+import Vue from 'vue';
 
 export default {
     data() {
@@ -27,7 +33,12 @@ export default {
             lastName: 'rose',
             obj: {
                 key: 1
-            }
+            },
+            user: {
+                firstName: 'jack',
+                lastName: 'rose'
+            },
+            arr: [1, 2, 3, 4]
         };
     },
     beforeCreate() {
@@ -41,6 +52,9 @@ export default {
     },
     mounted() {
         console.log('父Mounted');
+    },
+    updated() {
+        console.log('父updated');
     },
     beforeDestroy() {
         console.log('父beforeDestroy');
@@ -74,6 +88,9 @@ export default {
             this.fullName = 'rose-jack';
         },
         changeObj() {
+            this.arr.length = 3;
+            // this.$nextTick
+            // this.$route
             delete this.obj.key;
         }
     } 

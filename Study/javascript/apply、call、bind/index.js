@@ -1,25 +1,10 @@
-// var a = 2;
-// var obj = {
-//     a: 1,
-//     foo: function () {
-//         console.log(this.a);
-//     }
-// };
-
-// var c = obj.foo;
-// setTimeout(obj.foo, 1000);
-// // setTimeout(obj.foo.bind(obj), 1000);
-
-
-
-// setTimeout(() => {
-//     obj.foo();
-// }, 1000);
-
-// // setTimeout(function() {
-// //     obj.foo();
-// // }, 1000);
-
+var a = 2;
+var obj = {
+    a: 1,
+    foo: function () {
+        console.log(this.a);
+    }
+};
 
 
 

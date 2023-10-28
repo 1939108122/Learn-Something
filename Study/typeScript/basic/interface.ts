@@ -50,3 +50,27 @@ interface Counter {
 }
 
 let counter = <Counter>function (start: number) { };
+
+
+
+
+interface Point {
+    x: number; 
+    y: number;
+}
+  
+interface Point {
+    y: number;
+    z: string
+}
+  
+  const point: Point = { x: 10, y: 30, z: '1' };
+
+  console.log(point);
+
+
+type Point2 = Point & {
+    age: number
+}
+
+const crrcle = {x: 10, y: 30, z: '1', age: 1}

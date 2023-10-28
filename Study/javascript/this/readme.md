@@ -215,3 +215,26 @@ new King(); // jack
 
 new Queen(); //undefined
 ```
+
+
+```js
+var a = 2;
+
+let obj = {
+    a: 1,
+    foo: function foo() {
+        console.log(this.a);
+        function b() {
+            console.log(this.a);
+            function c() {
+                console.log(this.a);
+            }
+            c();
+        };
+        b();
+    }
+};
+
+
+obj.foo(); // 1 2 2
+```

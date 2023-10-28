@@ -2,6 +2,7 @@
     <div>
         {{c}}
         <button @click="sub()">-1</button>
+        local: {{local}}
     </div>
 </template>
 
@@ -14,7 +15,7 @@ import { mapState, mapMutations } from 'vuex';
 export default {
     data() {
         return {
-
+            local: localStorage.getItem('count')
         };
     },
     computed: {
@@ -24,7 +25,7 @@ export default {
         })
     },
     methods: {
-        ...mapMutations(['sub'])
+        ...mapMutations(['sub']),
     }
 }
 </script>

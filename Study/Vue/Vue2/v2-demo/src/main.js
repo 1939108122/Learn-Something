@@ -10,3 +10,10 @@ var vm = new Vue({
   store,
   render: function (h) { return h(App) }
 }).$mount('#app')
+
+
+console.log(vm, '321331232');
+
+console.log(vm.hasOwnProperty('$set'));
+
+console.log(Vue.prototype.hasOwnProperty('$set'));

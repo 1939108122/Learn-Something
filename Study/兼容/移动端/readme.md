@@ -12,7 +12,7 @@
 
 4: iphone X蒙层滚动不归位问题
 
-5: ios fixed定位失效
+5: ios fixed定位失效(软键盘弹起时 fixed定位会变成 absolute定位)
 
 让主体部分滚动
 
@@ -27,3 +27,7 @@ line-height：normal; padding:xxpx 0;
 7: IOS 键盘收起时页面没用回落，底部会留白
 
 通过监听键盘回落时间滚动到原来的位置
+
+
+
+

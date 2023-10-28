@@ -66,3 +66,23 @@ promise.then((data) => {
 }).catch((err) => {
     console.log(err);
 })
+
+
+function foo() {
+
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(11);
+        })
+    })
+}
+
+foo().then((data) => {
+    console.log(data);
+    return data;
+}).then(data => {
+    console.log(data);
+    return data;
+}).then((data) => {
+    console.log(data);
+})

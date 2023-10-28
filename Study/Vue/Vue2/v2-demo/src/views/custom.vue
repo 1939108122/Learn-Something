@@ -5,6 +5,7 @@
         <button @click="change">修改a</button>
 
         <button @click="change2">修改b</button>
+        <slot :user="user">氟元素的slot</slot>
     </div>
 </template>
 
@@ -22,6 +23,10 @@ export default {
         b: {
             type: Number,
             default: 0
+        },
+        user: {
+            type: Object,
+            default: {}
         }
     },
     beforeCreate() {
@@ -36,6 +41,9 @@ export default {
     mounted() {
         console.log('子Mounted');
     },
+    updated() {
+        console.log('子updated');
+    },
     beforeDestroy() {
         console.log('子beforeDestroy');
     },
@@ -48,6 +56,13 @@ export default {
         },
         change2() {
             this.$emit('update:b', 3);
+
+            console.log(this);
+
+            function a() {
+                console.log(this, '12312');
+            }
+            a();
         }
     }
 }
